@@ -23,11 +23,8 @@
     .quiz-sidebar{display:flex;flex-direction:column;gap:16px;height:100%;overflow:hidden}
     .sidebar-content{display:flex;flex-direction:column;flex:1;overflow:hidden}
     
-    #indexList{display:grid;grid-template-columns:repeat(auto-fill,minmax(32px,1fr));grid-auto-rows:32px;gap:4px;flex:1;overflow-y:auto;overflow-x:hidden;padding:8px;align-items:start;justify-items:center;min-height:0}
-    #indexList::-webkit-scrollbar{width:8px}
-    #indexList::-webkit-scrollbar-track{background:rgba(0,0,0,0.1);border-radius:8px}
-    #indexList::-webkit-scrollbar-thumb{background:rgba(99,102,241,0.35);border-radius:8px;border:2px solid transparent;background-clip:padding-box}
-    #indexList::-webkit-scrollbar-thumb:hover{background:rgba(99,102,241,0.55);background-clip:padding-box}
+    #indexList{display:grid;grid-template-columns:repeat(auto-fill,minmax(32px,1fr));grid-auto-rows:32px;gap:4px;flex:1;overflow-y:auto;overflow-x:hidden;padding:8px;align-items:start;justify-items:center;min-height:0;scrollbar-width:none;-ms-overflow-style:none}
+    #indexList::-webkit-scrollbar{display:none}
     
     .q-index-btn{width:100%;height:100%;border-radius:6px;padding:0;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:.70rem;display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;touch-action:manipulation;transition:all 0.2s ease}
     .q-index-btn.active{box-shadow:0 6px 18px rgba(99,102,241,0.25);background:rgba(99,102,241,0.08);color:var(--accent);border-color:rgba(99,102,241,0.18)}
@@ -43,7 +40,7 @@
     .page-btn.active{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
     .page-btn:hover{background:rgba(255,255,255,0.05)}
 
-    .question-title{font-weight:700;font-size:0.8rem}
+    .question-title{font-weight:600;font-size:0.8rem}
     .q-meta{color:var(--muted);font-size:.60rem}
     .text-end{font-size: 0.30rem;}
     .option{display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;border:1px solid var(--border);cursor:pointer;background:transparent;transition:.3s}
@@ -62,11 +59,12 @@
     .image-option{position:relative;cursor:pointer;border:3px solid var(--border);border-radius:10px;overflow:hidden;transition:.3s;background:rgba(0,0,0,0.2)}
     .image-option:hover{transform:scale(1.03);box-shadow:0 8px 20px rgba(99,102,241,0.25);border-color:rgba(99,102,241,0.3)}
     .image-option input[type=radio]{position:absolute;top:10px;right:10px;width:24px;height:24px;cursor:pointer;z-index:10}
-    .image-option img{width:100%;height:auto;display:block;min-height:120px;object-fit:cover}
+    .image-option img{width:100%;height:auto;display:block;min-height:120px;max-height:200px;object-fit:cover}
     .image-option.selected{border-color:var(--accent);box-shadow:0 4px 16px rgba(99,102,241,0.25)}
     .image-option.correct{border-color:rgba(34,197,94,0.7);box-shadow:0 4px 16px rgba(34,197,94,0.4)}
     .image-option.incorrect{border-color:rgba(239,68,68,0.7);box-shadow:0 4px 16px rgba(239,68,68,0.4)}
-    .question-image{width:100%;height:auto;max-height:420px;object-fit:contain;border:1px solid var(--border);border-radius:10px;margin-top:12px;background:rgba(0,0,0,0.12);display:block}
+    .question-image{width:100%;height:auto;max-width:400px;max-height:240px;object-fit:contain;border:1px solid var(--border);border-radius:10px;margin:12px auto;background:rgba(0,0,0,0.12);display:block}
+    .question-image-large{max-width:640px;max-height:420px}
 
     /* BOTONES DE TIPO: evitar overflow en móviles - label con ellipsis */
     .quiz-type-btn{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.02);color:var(--muted);font-size:.85rem;font-weight:600;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:8px;justify-content:flex-start;width:100%;position:relative;overflow:hidden}
@@ -90,17 +88,18 @@
     }
 
     @media (max-width:767px){
-      .container-quiz{height:100vh;padding:8px}.card-quiz{height:calc(100vh - 16px);padding:10px}.main-layout{height:100%}.quiz-main-content{height:100%;display:flex;flex-direction:column}.question-image{max-height:40vh}.mobile-index-toggle{display:inline-flex!important}.mobile-summary-toggle{display:inline-flex!important}.sidebar-content{display:none!important}.quiz-type-selector-inline{display:none!important}.keyboard-hint{display:none!important}.controls{flex-direction:column!important;gap:12px;align-items:stretch!important;margin-top:auto!important}
+      .container-quiz{height:100vh;padding:8px}.card-quiz{height:calc(100vh - 16px);padding:10px}.main-layout{height:100%}.quiz-main-content{height:100%;display:flex;flex-direction:column}.question-image{max-height:220px;max-width:100%}.mobile-index-toggle{display:inline-flex!important}.mobile-summary-toggle{display:inline-flex!important}.sidebar-content{display:none!important}.keyboard-hint{display:none!important}.controls{flex-direction:column!important;gap:8px;align-items:stretch!important;margin-top:auto!important}
 
-      /* Botones de navegación en móvil: añadir padding y margin para que no se peguen */
-      .controls .btn{min-width:unset;width:100%;padding:.6rem .9rem;margin:6px 0;border-radius:8px}
-      .controls>div:first-child{display:flex;gap:8px;width:100%}
-      .controls>div:first-child .btn{flex:1;margin:0 4px}
-      .controls .q-meta{text-align:center;order:-1}
+      /* Botones de navegación en móvil: solo íconos grandes */
+      .controls{display:flex!important;flex-direction:column;gap:8px}
+      .controls .btn{min-width:unset;width:100%;padding:12px;margin:0;border-radius:8px;font-size:1.3rem}
+      .controls>div:first-child{display:flex;gap:6px;width:100%}
+      .controls>div:first-child .btn{flex:1;margin:0}
+      .controls .q-meta{text-align:center;order:-1;margin-bottom:6px}
       
       /* MEJORAS PARA EL ÍNDICE EN MÓVIL */
       #indexList{grid-template-columns:repeat(auto-fill,minmax(30px,1fr));grid-auto-rows:30px;gap:3px}
-      .image-options{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}.index-panel{margin:10px auto;max-height:calc(100vh - 60px);padding:10px}#indexListOverlay{max-height:calc(100vh - 140px);overflow-y:auto}
+      .image-options{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}.image-option img{max-height:150px}.index-panel{margin:10px auto;max-height:calc(100vh - 60px);padding:10px}#indexListOverlay{max-height:calc(100vh - 140px);overflow-y:auto}
 
       /* Ajustes específicos de tamaño en móviles para los botones de tipo */
       .quiz-type-btn{padding:8px 10px;font-size:.95rem}
@@ -114,7 +113,7 @@
       .page-btn{width:26px;height:26px;font-size:0.65rem}
     }
 
-    @media (max-width:480px){.controls .btn{font-size:.85rem;padding:.55rem .8rem}.card-quiz{padding:10px}.container-quiz{padding:8px}
+    @media (max-width:480px){.controls .btn{font-size:.8rem;padding:8px 10px}.card-quiz{padding:8px}.container-quiz{padding:6px}
       /* en pantallas muy pequeñas reducimos aún más el texto dentro del botón si es necesario */
       .quiz-type-btn{font-size:.9rem}
       .quiz-type-btn .label{max-width:calc(100% - 34px);white-space:normal}
@@ -124,6 +123,9 @@
       /* MEJORAS PARA EL ÍNDICE EN PANTALLAS MUY PEQUEÑAS */
       #indexList{grid-template-columns:repeat(auto-fill,minmax(28px,1fr));grid-auto-rows:28px;gap:2px}
       .q-index-btn{font-size:0.65rem}
+      
+      /* Imagenes aún más pequeñas en pantallas muy pequeñas */
+      .question-image{max-height:170px}
     }
 
     .mobile-index-toggle,.mobile-summary-toggle{position:fixed;right:10px;z-index:1100;display:none;padding:6px 10px;border-radius:18px;font-size:.75rem;box-shadow:0 4px 12px rgba(0,0,0,0.6);background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;white-space:nowrap;max-width:calc(100vw - 20px)}
@@ -132,13 +134,21 @@
     .index-overlay{position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.65));display:none;z-index:1200;padding:18px}
     .index-overlay.open{display:block}
     .index-panel{max-width:720px;margin:40px auto;background:var(--card);border:1px solid var(--border);padding:12px;border-radius:12px;max-height:80vh;overflow:hidden;display:flex;flex-direction:column}
-    #indexListOverlay{overflow-y:auto;flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));grid-auto-rows:40px;gap:4px;padding:8px;min-height:0}
-    .controls .btn{min-width:110px}
+    #indexListOverlay{overflow-y:auto;flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));grid-auto-rows:40px;gap:4px;padding:8px;min-height:0;scrollbar-width:none;-ms-overflow-style:none}
+    #indexListOverlay::-webkit-scrollbar{display:none}
+    .controls .btn{min-width:70px;font-size:1.2rem;padding:10px 14px}
+    @media (min-width:768px){.controls{display:none!important}}
     .status-line{color:var(--muted);font-size:.88rem}
     .sidebar-bottom{margin-top:auto;padding-top:12px;flex-shrink:0}
+    .sidebar-nav-buttons{display:none;gap:4px;margin-top:8px}
+    .sidebar-nav-buttons .btn{flex:1;font-size:1.2rem;padding:10px 8px;min-width:0}
+    .sidebar-type-row{display:none;gap:4px;margin-bottom:8px}
+    .sidebar-type-row .btn{flex:1;font-size:1.1rem;padding:8px 6px;min-width:0}
+    @media (min-width:768px){.sidebar-nav-buttons{display:flex}.sidebar-type-row{display:flex}}
     .summary-modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:none;z-index:2000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px)}
     .summary-modal.show{display:flex}
-    .summary-content{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:24px 20px;max-width:420px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.8);animation:slideIn .3s ease-out}
+    .summary-content{background:var(--card);border:2px solid var(--border);border-radius:16px;padding:24px 20px;max-width:420px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.8);animation:slideIn .3s ease-out;scrollbar-width:none;-ms-overflow-style:none}
+    .summary-content::-webkit-scrollbar{display:none}
     @keyframes slideIn{from{transform:translateY(-30px);opacity:0}to{transform:translateY(0);opacity:1}}
     .summary-title{font-size:1.2rem;font-weight:700;text-align:center;margin-bottom:15px;color:var(--accent)}
     .summary-score{font-size:2.2rem;font-weight:700;text-align:center;margin:16px 0}
@@ -153,10 +163,6 @@
     .quiz-type-selector{display:flex;flex-direction:column;gap:8px;padding:12px;background:rgba(99,102,241,0.03);border-radius:10px;border:1px solid var(--border);margin-bottom:16px}
     .quiz-type-selector.hidden{display:none}
     .quiz-type-selector h6{margin:0 0 8px 0;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-    .quiz-type-selector-inline{display:none}
-    .quiz-type-selector-inline .emoji{font-size:.9rem;margin-right:4px}
-    .quiz-type-selector-inline .label{font-size:.8rem}
-    .quiz-type-selector-inline .btn.selected{background:linear-gradient(135deg,var(--accent-soft),rgba(79,70,229,0.08));border-color:var(--accent);color:var(--accent)}
     .quiz-type-selector-mobile{display:none}
     @media (max-width:767px){.quiz-type-selector-mobile{display:block}}
     .quiz-type-selector-mobile .btn.selected{background:linear-gradient(135deg,var(--accent-soft),rgba(79,70,229,0.08));border-color:var(--accent);color:var(--accent)}
@@ -173,9 +179,10 @@
     .btn-primary:hover,.btn-primary:focus{background:var(--accent-alt);border-color:var(--accent-alt)}
     .btn-outline-light{color:var(--muted);border-color:var(--border)}
     .btn-outline-light:hover{background:rgba(255,255,255,0.06);color:#dbe5ef;border-color:var(--accent)}
-    @media (min-width:768px){.main-layout{display:grid!important;grid-template-columns:300px 1fr;gap:24px;flex:1;overflow:hidden}.main-layout .quiz-sidebar{width:100%;display:flex;flex-direction:column;overflow:hidden}.main-layout .quiz-main-content{overflow-y:auto}}
+    @media (min-width:768px){.main-layout{display:grid!important;grid-template-columns:300px 1fr;gap:24px;flex:1;overflow:hidden}.main-layout .quiz-sidebar{width:100%;display:flex;flex-direction:column;overflow:hidden}.main-layout .quiz-main-content{overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}.main-layout .quiz-main-content::-webkit-scrollbar{display:none}}
     .main-layout{flex:1;display:flex;flex-direction:column;overflow:hidden}
-    .quiz-main-content{overflow-y:auto}
+    .quiz-main-content{overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+    .quiz-main-content::-webkit-scrollbar{display:none}
   @media (max-width: 767px) {
   .question-container button,
   #prevBtn, #checkBtn, #nextBtn {
@@ -274,16 +281,15 @@
             <div class="sidebar-bottom">
               <hr style="border-color:var(--border);margin:12px 0">
               <div class="status-line mb-2">Puntaje: <strong id="score">0</strong> / <span id="total"></span></div>
-              <button class="btn btn-sm btn-outline-light w-100 mb-2" id="showSummaryBtn">📊 Ver Resumen</button>
-              <div class="quiz-type-selector-inline" id="quizTypeSelectorInline">
-                <button class="btn btn-sm btn-outline-light w-100 mb-1" id="btnTeoricoModal" data-type="teorico">
-                  <span class="emoji">📚</span>
-                  <span class="label">Teórico</span>
-                </button>
-                <button class="btn btn-sm btn-outline-light w-100" id="btnPracticoModal" data-type="practico">
-                  <span class="emoji">⚙️</span>
-                  <span class="label">Práctico</span>
-                </button>
+              <div class="sidebar-type-row">
+                <button class="btn btn-sm btn-outline-light" id="showSummaryBtn" title="Ver Resumen">📊</button>
+                <button class="btn btn-sm btn-outline-light" id="btnTeoricoModal" data-type="teorico" title="Teórico">📚</button>
+                <button class="btn btn-sm btn-outline-light" id="btnPracticoModal" data-type="practico" title="Práctico">⚙️</button>
+              </div>
+              <div class="sidebar-nav-buttons">
+                <button id="prevBtnSidebar" class="btn btn-outline-light" title="Anterior">←</button>
+                <button id="checkBtnSidebar" class="btn btn-primary" title="Comprobar">✓</button>
+                <button id="nextBtnSidebar" class="btn btn-outline-light" title="Siguiente">→</button>
               </div>
             </div>
           </div>
@@ -307,9 +313,9 @@
 
           <div class="d-flex justify-content-between align-items-center mt-3 controls">
             <div>
-              <button id="prevBtn" class="btn btn-outline-light me-2">Anterior</button>
-              <button id="checkBtn" class="btn btn-primary">Comprobar</button>
-              <button id="nextBtn" class="btn btn-outline-light ms-2">Siguiente</button>
+              <button id="prevBtn" class="btn btn-outline-light" title="Anterior">←</button>
+              <button id="checkBtn" class="btn btn-primary" title="Comprobar">✓</button>
+              <button id="nextBtn" class="btn btn-outline-light" title="Siguiente">→</button>
             </div>
             <div class="q-meta keyboard-hint">Enter → Comprobar</div>
           </div>
@@ -402,6 +408,12 @@
     const questionsPerPage = 50; // Número de preguntas por página
 
     const $ = id => document.getElementById(id);
+    const escapeHtml = (str='') => str
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
 
     function initQuiz(){
       $('total').textContent = questions.length;
@@ -416,7 +428,6 @@
       $('sidebarContent').style.display = 'block';
       $('quizContent').style.display = 'block';
       $('quizTypeSelector').classList.add('hidden');
-      $('quizTypeSelectorInline').style.display = 'block';
       document.querySelector('.main-layout').classList.remove('center-mode');
       document.querySelector('.quiz-type-selector').classList.remove('center');
       
@@ -607,7 +618,8 @@
 
     function renderQuestion(){
       const q = questions[state.current];
-      $('qTitle').textContent = `${state.current+1}. ${q.question}`;
+      const formattedQuestion = escapeHtml(q.question || '').replace(/\n/g,'<br>');
+      $('qTitle').innerHTML = `${state.current+1}. ${formattedQuestion}`;
       
       // Actualizar tipo de pregunta
       let typeText = 'Respuesta única';
@@ -632,6 +644,9 @@
         img.alt = 'imagen pregunta';
         img.decoding = 'async';
         img.loading = 'lazy';
+        if(selectedQuizType === 'practico' && q.id >= 13 && q.id <= 23){
+          img.classList.add('question-image-large');
+        }
         area.appendChild(img);
       }
 
@@ -754,15 +769,7 @@
       
       // Para preguntas de texto
       if(q.type === 'text'){
-        if(!user) { ok = false; }
-        else {
-          const correctAnswers = Array.isArray(q.correctAnswer) ? q.correctAnswer : [q.correctAnswer];
-          ok = correctAnswers.some(ans => {
-            const normalizedUser = user.toLowerCase().trim().replace(/\s+/g, ' ');
-            const normalizedAns = ans.toLowerCase().trim().replace(/\s+/g, ' ');
-            return normalizedUser === normalizedAns;
-          });
-        }
+        ok = checkTextAnswer(q, user);
       }
       // Para preguntas con opciones
       else {
@@ -782,12 +789,7 @@
       for(let i=0;i<questions.length;i++){
         const q=questions[i]; const user=state.answers[i];
         if(q.type === 'text'){
-          const correctAnswers = Array.isArray(q.correctAnswer) ? q.correctAnswer : [q.correctAnswer];
-          if(user && correctAnswers.some(ans => {
-            const normalizedUser = user.toLowerCase().trim().replace(/\s+/g, ' ');
-            const normalizedAns = ans.toLowerCase().trim().replace(/\s+/g, ' ');
-            return normalizedUser === normalizedAns;
-          })) s++;
+          if(checkTextAnswer(q, user)) s++;
         } else {
           const correct = q.options.filter(o=>o.correct).map(o=>o.id).sort();
           if(q.type==='multiple'){ 
@@ -802,6 +804,41 @@
     }
 
     function arraysEqual(a,b){ if(a.length!==b.length) return false; for(let i=0;i<a.length;i++) if(a[i]!==b[i]) return false; return true; }
+
+    function parseNumericInput(value){
+      if(value == null) return null;
+      const str = typeof value === 'string' ? value : String(value);
+      const normalized = str.replace(/\s+/g,'').replace(/,/g,'.').replace(/[^0-9.\-]/g,'');
+      if(!normalized || normalized === '-' || normalized === '.' || normalized === '-.') return null;
+      const parsed = parseFloat(normalized);
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function isNumericTextQuestion(q){
+      return q && q.type === 'text' && q.numericAnswer !== undefined && q.numericAnswer !== null;
+    }
+
+    function checkTextAnswer(q, user){
+      if(user == null) return false;
+      const userInput = typeof user === 'string' ? user : String(user);
+      if(!userInput.trim()) return false;
+
+      if(isNumericTextQuestion(q)){
+        const numericUser = parseNumericInput(userInput);
+        const expected = Number(q.numericAnswer);
+        if(!Number.isFinite(numericUser) || !Number.isFinite(expected)) return false;
+        const tolerance = typeof q.tolerance === 'number' ? q.tolerance : 0;
+        return Math.abs(numericUser - expected) <= tolerance;
+      }
+
+      const correctAnswers = Array.isArray(q.correctAnswer) ? q.correctAnswer : (q.correctAnswer ? [q.correctAnswer] : []);
+      return correctAnswers.some(ans => {
+        if(typeof ans !== 'string') return false;
+        const normalizedUser = userInput.toLowerCase().trim().replace(/\s+/g, ' ');
+        const normalizedAns = ans.toLowerCase().trim().replace(/\s+/g, ' ');
+        return normalizedUser === normalizedAns;
+      });
+    }
 
     function showFeedback(index){
       const q = questions[index]; 
@@ -818,10 +855,22 @@
           
           // Mostrar la respuesta correcta si el usuario se equivocó
           if(!correct) {
-            const correctAnswers = Array.isArray(q.correctAnswer) ? q.correctAnswer : [q.correctAnswer];
+            const answers = Array.isArray(q.correctAnswer) ? q.correctAnswer : (q.correctAnswer ? [q.correctAnswer] : []);
+            let feedbackText = answers.join(' o ');
+            if(isNumericTextQuestion(q)){
+              const expectedValue = Number(q.numericAnswer);
+              if(!feedbackText){
+                feedbackText = Number.isFinite(expectedValue) ? expectedValue.toString() : '';
+              }
+              if(typeof q.tolerance === 'number'){
+                const unit = q.toleranceUnit ? ` ${q.toleranceUnit}` : '';
+                feedbackText += ` (tolerancia ±${q.tolerance}${unit})`;
+              }
+            }
+            if(!feedbackText) feedbackText = 'Revisar material de estudio';
             const feedback = document.createElement('div');
             feedback.className = 'correct-answer-feedback';
-            feedback.innerHTML = `<strong>Respuesta correcta:</strong> ${correctAnswers.join(' o ')}`;
+            feedback.innerHTML = `<strong>Respuesta correcta:</strong> ${feedbackText}`;
             container.appendChild(feedback);
           }
         }
@@ -879,6 +928,12 @@
     document.getElementById('prevBtn').addEventListener('click', ()=>goTo(state.current-1));
     document.getElementById('nextBtn').addEventListener('click', ()=>goTo(state.current+1));
     document.getElementById('checkBtn').addEventListener('click', ()=>checkCurrent());
+    
+    // Botones del sidebar (desktop)
+    document.getElementById('prevBtnSidebar').addEventListener('click', ()=>goTo(state.current-1));
+    document.getElementById('nextBtnSidebar').addEventListener('click', ()=>goTo(state.current+1));
+    document.getElementById('checkBtnSidebar').addEventListener('click', ()=>checkCurrent());
+    
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') checkCurrent(); });
 
     function checkCurrent(){
@@ -1395,6 +1450,7 @@
         "id": 27,
         "type": "multiple",
         "question": "¿Qué proceso permite aumentar la cantidad de abonados atendidos por un sistema celular de comunicaciones en una determinada zona?",
+        "image": "27T.png",
         "options": [
             {"id": "a", "text": "Subdivisión de la celdas", "correct": true},
             {"id": "b", "text": "Aumento de la potencia de señal radiada por la antena de la estación base", "correct": false},
@@ -1407,6 +1463,7 @@
         "id": 28,
         "type": "single",
         "question": "La herramienta de la figura, se usa para:",
+        "image": "28T.png",
         "options": [
             {"id": "a", "text": "Empalar dos fibras ópticas monomodo", "correct": false},
             {"id": "b", "text": "Impactar un jack RJ45 en la toma de pared (roseta)", "correct": false},
@@ -1443,6 +1500,7 @@
         "id": 31,
         "type": "single",
         "question": "Identifique los siguientes tipos de conductores:",
+        "image": "31T.png",
         "options": [
             {"id": "a", "text": "a = UTP | b = FTP | c = STP | d = S-FTP", "correct": true},
             {"id": "b", "text": "a = S-FTP | b = FTP | c = STP | d = UTP", "correct": false},
@@ -1513,6 +1571,7 @@
         "id": 37,
         "type": "single",
         "question": "La herramienta de la figura, se usa para:",
+        "image": "37T.png",
         "options": [
             {"id": "a", "text": "Empalar dos fibras ópticas monomodo", "correct": false},
             {"id": "b", "text": "Conectar los cables UTP a un panel de conexión (patch pannel) en el armario", "correct": false},
@@ -1554,6 +1613,7 @@
         "id": 40,
         "type": "single",
         "question": "Indique qué tipo de técnica de acceso múltiple corresponde a cada gráfico:",
+        "image": "40T.png",
         "options": [
             {"id": "a", "text": "1 = TDMA | 2 = CDMA | 3 = FDMA", "correct": false},
             {"id": "b", "text": "1 = CDMA | 2 = FDMA | 3 = TDMA", "correct": false},
@@ -1687,9 +1747,14 @@
         },
         {
         "id": 52,
-        "type": "text",
-        "question": "El cable coaxial tiene un conductor central constituido por un [OPCION 1] (que transporta la información) rodeado por un [OPCION 2]. Sobre este se presenta una malla trenzada que actúa como apantallamiento, protegiendo los datos que se transmiten. [OPCION 3] actúa como masa, proveyendo un camino de retorno para la señal. Finalmente, todo esto queda recubierto con [OPCION 4].",
-        "correctAnswer": ["núcleo sólido de cobre", "aislante", "la malla de hilo trenzada", "una cubierta de esmalte de plástico"]
+        "type": "single",
+        "question": "El cable coaxial tiene un conductor central constituido por un [OPCION 1] (que transporta la información) rodeado por un [OPCION 2]. Sobre este se presenta una malla trenzada que actúa como apantallamiento, protegiendo los datos que se transmiten. [OPCION 3] actúa como masa, proveyendo un camino de retorno para la señal. Finalmente, todo esto queda recubierto con [OPCION 4]. ¿Qué combinación completa correctamente la secuencia?",
+        "options": [
+          {"id": "a", "text": "[\"núcleo sólido de cobre\", \"aislante\", \"la malla de hilo trenzada\", \"una cubierta de esmalte de plástico\"]", "correct": true},
+          {"id": "b", "text": "[\"aislante\", \"núcleo sólido de cobre\", \"una cubierta de esmalte de plástico\", \"la malla de hilo trenzada\"]", "correct": false},
+          {"id": "c", "text": "[\"la malla de hilo trenzada\", \"aislante\", \"núcleo sólido de cobre\", \"una cubierta de esmalte de plástico\"]", "correct": false},
+          {"id": "d", "text": "[\"núcleo sólido de cobre\", \"una cubierta de esmalte de plástico\", \"la malla de hilo trenzada\", \"aislante\"]", "correct": false}
+        ]
         },
         {
         "id": 53,
@@ -1865,6 +1930,7 @@
         "id": 67,
         "type": "multiple",
         "question": "Si tengo un cable armado como el de la figura, lo usaré para conectar:",
+        "image": "67T.png",
         "options": [
             {"id": "a", "text": "Dos PC entre si", "correct": true},
             {"id": "b", "text": "Una PC a un switch", "correct": false},
@@ -1969,6 +2035,7 @@
         "id": 75,
         "type": "single",
         "question": "Indique los distintos tipos de fibras opticas que podemos tener utilizadas en comunicaciones:",
+        "image": "75T.png",
         "options": [
             {"id": "a", "text": "a = Monomodo (SM), b = Multimodo de Índice Gradual (MM), c = Multimodo de Salto de Índice (MM)", "correct": false},
             {"id": "b", "text": "a = Monomodo (SM), b = Multimodo de Salto de Índice (MM), c = Multimodo de Índice Gradual (MM)", "correct": true},
@@ -2148,20 +2215,23 @@
         },
         {
         "id": 90,
-        "type": "text",
-        "question": "El 5G mejorara la conectividad y [__] y [__] considerablemente el tiempo de latencia:",
-        "correctAnswer": ["Cobertura", "Reducirá"]
+        "type": "single",
+        "question": "El 5G mejorará la conectividad y [__] y [__] considerablemente el tiempo de latencia. Seleccione la combinación correcta:",
+        "options": [
+          {"id": "a", "text": "[\"Cobertura\", \"Reducirá\"]", "correct": true},
+          {"id": "b", "text": "[\"Reducirá\", \"Cobertura\"]", "correct": false},
+          {"id": "c", "text": "[\"Latencia\", \"Aumentará\"]", "correct": false},
+          {"id": "d", "text": "[\"Capacidad\", \"Reducirá\"]", "correct": false}
+        ]
         },
         {
         "id": 91,
-        "type": "single",
-        "question": "¿Cuál es la longitud máxima que puede tener el enlace permanente? (Indique sólo con números, sin unidades)",
-        "options": [
-            {"id": "a", "text": "100", "correct": false},
-            {"id": "b", "text": "90", "correct": true},
-            {"id": "c", "text": "70", "correct": false},
-            {"id": "d", "text": "120", "correct": false}
-        ]
+        "type": "text",
+        "question": "¿Cuál es la longitud máxima que puede tener el enlace permanente? (Responde solo con números, sin unidades. Se acepta un margen de ±4 metros)",
+        "correctAnswer": ["95.516"],
+        "numericAnswer": 95.516,
+        "tolerance": 4,
+        "toleranceUnit": "metros"
         },
         {
         "id": 92,
@@ -2245,6 +2315,7 @@
         "id": 99,
         "type": "single",
         "question": "Identifique tipo de cable:",
+        "image": "99T.png",
         "options": [
             {"id": "a", "text": "STP, Multipar telefónico,Coaxial", "correct": false},
             {"id": "b", "text": "FTP, UTP,CTP", "correct": false},
@@ -2413,7 +2484,8 @@
         {
         "id": 4,
         "type": "single",
-        "question": "Un radionavegador por línea de vista que opera a una frecuencia de 12000 MHz tiene una separación de 100 km entre antenas. Las antenas están instaladas en la parte superior de torres de 100 metros de altura, y ambas poseen una ganancia de 26dB. El transmisor tiene una potencia de salida de 30 dBm. Determine el máximo espacio libre que debe existir entre la línea de vista y un obstáculo, tomando en cuenta que el mismo se encuentra a 30 Km de la antena de transmisión.",
+        "image": "4P.png",
+        "question": "Un radioenlace por línea de vista que opera a una frecuencia de 12000 MHz tiene una separación de 100 km entre antenas. Las antenas están instaladas en la parte superior de torres de 100 metros de altura, y ambas poseen una ganancia de 28dB. El transmisor tiene una potencia de salida de 30 dBm. Determine el máximo espacio libre que debe existir entre la línea de vista y un obstáculo, tomando en cuenta que el mismo se encuentra a 30 Km de la antena de transmisión.",
         "options": [
             {"id": "a", "text": "0.43 m", "correct": false},
             {"id": "b", "text": "72 m", "correct": false},
@@ -2426,20 +2498,25 @@
         },
         {
         "id": 5,
-        "type": "text",
-        "question": "Realice el presupuesto de enlace para un transmisor y un receptor que operan a una frecuencia de 12 GHz, y están separados por 100 km. El transmisor tiene una potencia de salida de 1W, la antena transmisora tiene una ganancia de 28 dBi y la receptora de 20 dBi. a) Determine cuál deberá ser la sensibilidad del receptor para que le permita operar en cualquier condición climática.",
-        "correctAnswer": ["-107 dBm"]
+        "type": "multiple",
+        "question": "Realice el presupuesto de enlace para un transmisor y un receptor que operan a una frecuencia de 12 GHz, y están separados por 100 km. El transmisor tiene una potencia de salida de 1W, la antena transmisora tiene una ganancia de 28 dBi y la receptora de 20 dBi. Ambas antenas se encuentran ubicadas en torres de 100 m de altura. La linea de transmisión tiene una longitud de 10 m. y la de recepción de 20 m (el cable que se utilizó en ambos casos tiene una atenuación de 0.3 dB/m). Los conectores de las líneas de transmisión tienen cada uno 0.5 dB de atenuación.\n\na) Determine cuál deberá ser la sensibilidad del receptor para que le permita operar en cualquier condición climática.\nb) Determine el PIRE/EIRP (Potencia Isotrópica Radiada Efectiva)",
+        "options": [
+        { "id": "a", "text": "PIRE/EIRP = 50 dBm", "correct": false },
+        { "id": "b", "text": "Sensibilidad del Receptor = 97 dBm", "correct": false },
+        { "id": "c", "text": "Sensibilidad del Receptor = 37 dBm", "correct": false },
+        { "id": "d", "text": "PIRE/EIRP = -50 dBm", "correct": false },
+        { "id": "e", "text": "PIRE/EIRP = 30 dBm", "correct": false },
+        { "id": "f", "text": "Sensibilidad del Receptor = - 107 dBm", "correct": true },
+        { "id": "g", "text": "Sensibilidad del Receptor = - 87 dBm", "correct": false },
+        { "id": "h", "text": "Sensibilidad del Receptor = 107 dBm", "correct": false },
+        { "id": "i", "text": "PIRE/EIRP = 54 dBm", "correct": true },
+        ]
         },
         {
         "id": 6,
-        "type": "text",
-        "question": "Realice el presupuesto de enlace para un transmisor y un receptor que operan a una frecuencia de 12 GHz, y están separados por 100 km. El transmisor tiene una potencia de salida de 1W, la antena transmisora tiene una ganancia de 28 dBi y la receptora de 20 dBi. b) Determine el PIRE/EIRP (Potencia Isotrópica Radiada Efectiva).",
-        "correctAnswer": ["54 dBm"]
-        },
-        {
-        "id": 7,
         "type": "single",
         "question": "La torre de comunicaciones más alta de todo el planeta se encuentra en Tokio (Tokyo Sky Tree) tiene una altura de 534 metros. Determine el máximo alcance de radio que posee con una antena ubicada en la parte superior de un edificio de 100 pisos, con una altura promedio por piso de 2,5 metros.",
+        "image": "7P.png",
         "options": [
             {"id": "a", "text": "168.1 Kilometros cuadrados", "correct": false},
             {"id": "b", "text": "168.1 Kilometros", "correct": true},
@@ -2448,7 +2525,7 @@
         ]
         },
         {
-        "id": 8,
+        "id": 7,
         "type": "single",
         "question": "Se suministra una potencia de 25 dBm a una antena parabólica con una ganancia de 25 dBi. Calcule la densidad de potencia que produce en un punto distante a 1 km, en la dirección de máxima radiación.",
         "options": [
@@ -2460,49 +2537,67 @@
         ]
         },
         {
+        "id": 8,
+        "type": "multiple",
+        "question": "Realice el presupuesto de enlace para un transmisor y un receptor que operan a una frecuencia de 6 GHz y están separados por 40 km. El transmisor tiene una potencia de salida de 2W, la antena transmisora tiene una ganancia de 20 dBi y la receptora de 25 dBi. Ambas antenas se encuentran ubicadas en torres de 100m de altura. a) Determine cual debera ser la sensibilidad del receptor para que le permita operar en cualquier condicion climatica. b) Determine el PIRE/EIRP (Potencia Isotrópica Radiada Efectiva).",
+        "options": [
+        { "id": "a", "text": "PIRE/EIRP = 53 dBm", "correct": true },
+        { "id": "b", "text": "PIRE/EIRP = 33 dBm", "correct": false },
+        { "id": "c", "text": "Sensibilidad del Receptor = 107 dBm", "correct": false },
+        { "id": "d", "text": "Sensibilidad del Receptor = 82 dBm", "correct": false },
+        { "id": "e", "text": "PIRE/EIRP = - 33 dBm", "correct": false },
+        { "id": "f", "text": "Sensibilidad del Receptor = 42 dBm", "correct": false },
+        { "id": "g", "text": "PIRE/EIRP = -53 dBm", "correct": false },
+        { "id": "h", "text": "Sensibilidad del Receptor = - 82 dBm", "correct": true },
+        { "id": "i", "text": "Sensibilidad del Receptor = -107 dBm", "correct": false },
+        ]
+        },
+        {
         "id": 9,
-        "type": "text",
-        "question": "Realice el presupuesto de enlace para un transmisor y un receptor que operan a una frecuencia de 6 GHz y están separados por 40 km. El transmisor tiene una potencia de salida de 2W, la antena transmisora tiene una ganancia de 20 dBi y la receptora de 25 dBi. a) Determine cuál deberá ser la sensibilidad del receptor para que le permita operar en cualquier condición climática.",
-        "correctAnswer": ["-82 dBm"]
-        },
-        {
-        "id": 10,
-        "type": "text",
-        "question": "Realice el presupuesto de enlace para un transmisor y un receptor que operan a una frecuencia de 6 GHz y están separados por 40 km. El transmisor tiene una potencia de salida de 2W, la antena transmisora tiene una ganancia de 20 dBi y la receptora de 25 dBi. b) Determine el PIRE/EIRP (Potencia Isotrópica Radiada Efectiva).",
-        "correctAnswer": ["53 dBm"]
-        },
-        {
-        "id": 11,
         "type": "text",
         "question": "Si debo armar 15 cables de conexión (patch cord) para un Laboratorio de informática; ¿cuántos conectores RJ45 necesitaré comprar (al menos)?",
         "correctAnswer": ["30"]
         },
         {
-        "id": 12,
+        "id": 10,
         "type": "text",
         "question": "La forma en que se indica el tamaño de un conductor de comunicaciones es utilizando la nomenclatura AWG. Indique cuál es el número con el que se expresa el grosor de un cable UTP utilizado en cableado estructurado que responda a la categoría 5.",
         "correctAnswer": ["24"]
         },
         {
-        "id": 13,
+        "id": 11,
         "type": "single",
-        "question": "En la siguiente figura, indique cuantas celdas constituyen un cluster.",
+        "question": "En la siguiente figura, indique cuantas celdas constituyen un cluster:",
+        "image": "11P.png",
         "options": [
             {"id": "a", "text": "9", "correct": false},
-            {"id": "b", "text": "7", "correct": true}
+            {"id": "b", "text": "6", "correct": false},
+            {"id": "c", "text": "7", "correct": true}
         ]
         },
         {
-        "id": 14,
+        "id": 12,
         "type": "text",
         "question": "La forma en que se indica el tamaño de un conductor de comunicaciones es utilizando la nomenclatura AWG. Indique cuál es el número con el que se expresa el grosor de un cable UTP utilizado en cableado estructurado que responda a la categoría 6A, 7 y 8.",
         "correctAnswer": ["23"]
         },
         {
-        "id": 15,
+        "id": 13,
         "type": "single",
+        "image": "13P.png",
+        "question": " Se necesita realizar una transferencia de datos desde un DCE hacia un DTE a través del interface RS232",
+        "options": [
+            {"id": "a", "text": "Opción 1", "correct": false},
+            {"id": "b", "text": "Opción 2", "correct": false},
+            {"id": "c", "text": "Opción 3", "correct": false},
+            {"id": "d", "text": "Opción 4", "correct": true}
+        ]
+        },
+        {
+        "id": 14,
+        "type": "single",
+        "image": "14P.png",
         "question": "Se necesita realizar una transferencia de datos desde un DTE hacia un DCE a través del interface RS232. ¿Cual seria el conexionado mínimo necesario que garantice dicha transferencia?",
-        "image": "p13_1.png",
         "options": [
             {"id": "a", "text": "Opción 1", "correct": false},
             {"id": "b", "text": "Opción 2", "correct": false},
@@ -2511,10 +2606,10 @@
         ]
         },
         {
-        "id": 16,
+        "id": 15,
         "type": "single",
+        "image": "15P.png",
         "question": "Se necesita realizar una transferencia de datos entre un DTE y un DCE a través del interface RS232. ¿Cual sera el conexionado minimo necesario para realizarlo que garantice dicha transferencia?",
-        "image": "p14_1.png",
         "options": [
             {"id": "a", "text": "Opción 1", "correct": false},
             {"id": "b", "text": "Opción 2", "correct": true},
@@ -2523,10 +2618,22 @@
         ]
         },
         {
+        "id": 16,
+        "type": "single",
+        "question": "Se necesita realizar una transferencia de datos desde un DTE1 hacia un DTE2 a traves del interace RS232. ¿Cual sera el conexionado mínimo necesario que garantice dicha transferencia?",
+        "image": "16P.png",
+        "options": [
+            {"id": "a", "text": "Opción 1", "correct": true},
+            {"id": "b", "text": "Opción 2", "correct": false},
+            {"id": "c", "text": "Opción 3", "correct": false},
+            {"id": "d", "text": "Opción 4", "correct": false}
+        ]
+        },
+        {
         "id": 17,
         "type": "single",
-        "question": "Se necesita realizar una transferencia de datos desde un DTE2 hacia un DTE1 a través del interface RS232. ¿Cual sera el conexionado mínimo necesario que garantice dicha transferencia?",
-        "image": "p15_1.png",
+        "question": "Se necesita realizar una transferencia de datos desde un DTE2 hacia un DTE1 a través del interface RS232. ¿Cuál sería el conexionado mínimo necesario que garantice dicha transferencia?",
+        "image": "17P.png",
         "options": [
             {"id": "a", "text": "Opción 1", "correct": true},
             {"id": "b", "text": "Opción 2", "correct": false},
@@ -2537,20 +2644,69 @@
         {
         "id": 18,
         "type": "single",
-        "question": "Se necesita realizar una transferencia de datos desde un DTE hacia un DCE a través del interface RS232. Verificando previamente si el DCE se encuentra encendido. ¿Cuál sería el conexionado mínimo necesario que garantice dicha transferencia?",
-        "image": "p16_1.png",
+        "question": "Se necesita realizar una transferencia de datos entre un DTE1 y un DTE2 a traves del interface RS232. ¿Cual sera el conexionado minimo necesario que garantice dicha transferencia?",
+        "image": "18P.png",
         "options": [
-            {"id": "a", "text": "Opción 1", "correct": false},
-            {"id": "b", "text": "Opción 2", "correct": true},
+            {"id": "a", "text": "Opción 1", "correct": true},
+            {"id": "b", "text": "Opción 2", "correct": false},
             {"id": "c", "text": "Opción 3", "correct": false},
             {"id": "d", "text": "Opción 4", "correct": false}
         ]
         },
         {
-        "id": 19,
+          "id": 19,
+          "type": "single",
+          "question": " Se necesita realizar una transferencia de datos desde un DTE hacia un  DCE a través del interface RS232. Verificando previamente si el DCE se encuentra encendido. ¿Cuál sería el conexionado mínimo necesario que garantice dicha transferencia?",
+          "image": "19P.png",
+          "options": [
+              {"id": "a", "text": "Opción 1", "correct": false},
+              {"id": "b", "text": "Opción 2", "correct": true},
+              {"id": "c", "text": "Opción 3", "correct": false},
+              {"id": "d", "text": "Opción 4", "correct": false}
+          ]
+        },
+        {
+          "id": 20,
+          "type": "single",
+          "question": " Se necesita realizar una transferencia de datos desde un DCE hacia un DTE a través del interface RS232. Verificando previamente si el DTE se encuentra encendido. ¿Cuál sería el conexionado minimo necesario que garantice dicha transferencia?",
+          "image": "20P.png",
+          "options": [
+              {"id": "a", "text": "Opción 1", "correct": true},
+              {"id": "b", "text": "Opción 2", "correct": false},
+              {"id": "c", "text": "Opción 3", "correct": false},
+              {"id": "d", "text": "Opción 4", "correct": false}
+          ]
+        },
+        {
+          "id": 21,
+          "type":"single" ,
+          "question":  " Se necesita realizar una transferencia de datos entre un DTE y un DCE a través del interface RS232. Verificando previamente si el DCE seencuentra encendido.¿Cuál seria el conexionado minimo necesario que garantice dicha transferencia?",
+          "image": "21P.png",
+          "options":
+          [
+              {"id": "a", "text": "Opción 1", "correct": true},
+              {"id": "b", "text": "Opción 2", "correct": false},
+              {"id": "c", "text": "Opción 3", "correct": false},
+              {"id": "d", "text": "Opción 4", "correct": false}
+          ]
+        },
+        {
+          "id": 22,
+          "type": "single", 
+          "question": " Se necesita realizar una transferencia de datos desde un DCE hacia un DTE a través del interface R5232. Verificando previamente si el DCE se encuentra encendido y listo para recibir datos.  ¿Cuál sería el conexionado mínimo necesario que garantice dicha transferencia?",
+          "image": "22P.png",
+          "options": [
+              {"id": "a", "text": "Opción 1", "correct": false},
+              {"id": "b", "text": "Opción 2", "correct": true},
+              {"id": "c", "text": "Opción 3", "correct": false},
+              {"id": "d", "text": "Opción 4", "correct": false}
+          ]
+        },
+        {
+        "id": 23,
         "type": "single",
         "question": "Interface de Tiempo IEEE 1284 en modo SPP que representa la primera transferencia, de un caracter, a una impresora en forma correcta. ¿Cuál de los siguientes gráficos es el correcto?",
-        "image": "p17_1.png",
+        "image": "23P.png",
         "options": [
             {"id": "a", "text": "Opción 1", "correct": true},
             {"id": "b", "text": "Opción 2", "correct": false},
@@ -2558,7 +2714,7 @@
         ]
         },
         {
-        "id": 20,
+        "id": 24,
         "type": "single",
         "question": "De acuerdo a lo establecido en cuanto a las secuencias de las señales para sincronizar una transferencia de datos entre una computadora y el periférico, en caso de que dicho dispositivo sea una IMPRESORA, ¿cual sería el orden correcto de estas señales en el dominio del tiempo?",
         "options": [
@@ -2569,7 +2725,7 @@
         ]
         },
         {
-        "id": 21,
+        "id": 25,
         "type": "single",
         "question": "¿Que líneas se utilizan para verificar si el dispositivo esta listo para recibir datos?",
         "options": [
@@ -2580,7 +2736,7 @@
         ]
         },
         {
-        "id": 22,
+        "id": 26,
         "type": "single",
         "question": "¿Qué líneas se utilizan para verificar si el dispositivo esta encendido?",
         "options": [
@@ -2588,6 +2744,27 @@
             {"id": "b", "text": "4 y 5", "correct": true},
             {"id": "c", "text": "20 y 6", "correct": false},
             {"id": "d", "text": "3 y 16", "correct": false}
+        ]
+        },
+        {
+        "id": 27,
+        "type": "single",
+        "image": "impresoras.png",
+        "question": " Interface de Tiempo IEEE 1284 en modo SPP que representa la primera transferencia, de un caracter, a una impresora en forma correcta. ¿Cuál de los siguientes gráficos es el correcto?",
+        "options": [
+            {"id": "a", "text": "Opcion 1", "correct": true},
+            {"id": "b", "text": "Opcion 2", "correct": false},
+            {"id": "c", "text": "Opcion 3", "correct": false},
+        ]
+        },
+        {
+        "id": 28,
+        "type": "single",
+        "question": "Un sistema de comunicación opera con un transmisor y un receptor a una frecuencia de 2.4 GHz y una distancia de 70 km. El transmisor tiene una potencia de salida de 31.62 mW, la antena transmisora con una ganancia de 25 dBi se encuentra instalada en la parte superior de una torre de 70 metros de altura y a una distancia del transmisor de 30 metros. La antena receptora, con una ganancia de 25 dBi, está instalada en la parte superior de una torre de 90 metros de altura y a una distancia de 10 metros del receptor. El cable coaxial que interconecta las antenas con sus respectivos equipos posee una atenuación de 0.029 dB/m y los conectores utilizados tienen una atenuación de 0.05 dB.\n\na) Calcule la potencia entregada al receptor en dBm.\nb) Calcule el margen de desvanecimiento del sistema, considerando que el receptor tiene una sensibilidad de -90 dBm.\nc) Determine si el sistema es operativo dentro de las condiciones que se establecen como estándar.",
+        "options": [
+        {"id": "a",
+        "text": "Opción 1: Resuelto y es la respuesta correcta.",
+        "correct": true},
         ]
         }
         ]
