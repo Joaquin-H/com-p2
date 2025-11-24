@@ -1235,14 +1235,14 @@
         "image": "9T.png",
         "options": [
             {"id": "a", "text": "Dos Modems entre sí", "correct": false},
-            {"id": "b", "text": "Un Switch a un Router", "correct": false},
-            {"id": "c", "text": "Una PC a un Switch", "correct": false},
+            {"id": "b", "text": "Un Switch a un Router", "correct": true},
+            {"id": "c", "text": "Una PC a un Switch", "correct": true},
             {"id": "d", "text": "Dos Switch entre sí", "correct": false},
             {"id": "e", "text": "Un Switch a un Hub", "correct": false},
-            {"id": "f", "text": "Un Access Point a un Router", "correct": false},
-            {"id": "g", "text": "Una Pc a un Router", "correct": false},
-            {"id": "h", "text": "Dos PC entre sí", "correct": true},
-            {"id": "i", "text": "Dos DTE entre sí", "correct": true}
+            {"id": "f", "text": "Un Access Point a un Router", "correct": true},
+            {"id": "g", "text": "Una Pc a un Router", "correct": true},
+            {"id": "h", "text": "Dos PC entre sí", "correct": false},
+            {"id": "i", "text": "Dos DTE entre sí", "correct": false}
         ]
         },
         {
@@ -1637,10 +1637,10 @@
         "type": "single",
         "question": "La torsión del cable UTP se realiza",
         "options": [
-            {"id": "a", "text": "(D) Ninguna de las anteriores", "correct": true},
+            {"id": "a", "text": "(D) Ninguna de las anteriores", "correct": false},
             {"id": "b", "text": "(B) Disminuir la atenuación", "correct": false},
             {"id": "c", "text": "(A) Disminuir el ISI", "correct": false},
-            {"id": "d", "text": "(C) Disminuir la paradiafonía", "correct": false}
+            {"id": "d", "text": "(C) Disminuir la paradiafonía", "correct": true}
         ]
         },
         {
@@ -2228,10 +2228,10 @@
         {
         "id": 91,
         "type": "text",
-        "question": "¿Cuál es la longitud máxima que puede tener el enlace permanente? (Responde solo con números, sin unidades. Se acepta un margen de ±4 metros)",
-        "correctAnswer": ["95.516"],
-        "numericAnswer": 95.516,
-        "tolerance": 4,
+        "question": "¿Cuál es la longitud máxima que puede tener el enlace permanente? (Responde solo con números, sin unidades.)",
+        "correctAnswer": ["90"],
+        "numericAnswer": 90,
+        "tolerance": 0,
         "toleranceUnit": "metros"
         },
         {
@@ -2339,8 +2339,8 @@
         "type": "tf",
         "question": "Se puede considerar al ALOHA ranurado como un tipo de TDM",
         "options": [
-            {"id": "a", "text": "Falso", "correct": true},
-            {"id": "b", "text": "Verdadero", "correct": false}
+            {"id": "a", "text": "Falso", "correct": false},
+            {"id": "b", "text": "Verdadero", "correct": true}
         ]
         },
         {
@@ -2409,21 +2409,6 @@
         },
         {
         "id": 108,
-        "type": "multiple",
-        "question": "¿Cuales de los siguientes se pueden considerar factores que aumentan la atenuación en un conductor de fibra óptica?",
-        "options": [
-            {"id": "a", "text": "Conductores de fibra óptica próximos que conducen otras señales de comunicaciones", "correct": false},
-            {"id": "b", "text": "Bandas de absorción", "correct": true},
-            {"id": "c", "text": "Interferencias Electromagnéticas Externas", "correct": false},
-            {"id": "d", "text": "Radios de curvatura inapropiados (demasiado pequeños)", "correct": true},
-            {"id": "e", "text": "Humedad Ambiente", "correct": false},
-            {"id": "f", "text": "Excesiva cantidad de canales multiplexados en WDM", "correct": false},
-            {"id": "g", "text": "Radiación Nuclear", "correct": true},
-            {"id": "h", "text": "Dispersión Cromática", "correct": true}
-        ]
-        },
-        {
-        "id": 110,
         "type": "single",
         "question": "Si armamos un cable crossover, los pines 1y 2 de una de las puntas se conectaran a:",
         "options": [
@@ -2436,7 +2421,7 @@
         ]
         },
         {
-        "id": 111,
+        "id": 109,
         "type": "text",
         "question": "La forma en que se indica el tamaño de un conductor de comunicaciones es utilizando la nomenclatura AWG. Indique cuál es el número con el que se expresa el grosor de un cable UTP utilizado en cableado estructurado que responda a la categoría 6A, 7 y 8",
         "correctAnswer": ["23 AWG"]
