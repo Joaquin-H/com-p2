@@ -398,14 +398,12 @@
     // Quiz data will be loaded based on user selection
     let quizData = {};
     let questions = [];
-    // quizStates guarda el estado por tipo (teorico/practico) para persistir respuestas al cambiar
     let quizStates = {};
     let state = { current:0, answers:[], checked:[], score:0 };
     let selectedQuizType = null;
     
-    // Variables para la paginación del índice
     let currentPage = 0;
-    const questionsPerPage = 50; // Número de preguntas por página
+    const questionsPerPage = 54;
 
     const $ = id => document.getElementById(id);
     const escapeHtml = (str='') => str
@@ -582,39 +580,15 @@
     function renderPagination(containerId, totalPages, currentPage, onPageChange) {
       const container = $(containerId);
       container.innerHTML = '';
-      
-      // Botón anterior
-      if(currentPage > 0) {
-        const prevBtn = document.createElement('button');
-        prevBtn.className = 'page-btn';
-        prevBtn.innerHTML = '&lt;';
-        prevBtn.title = 'Página anterior';
-        prevBtn.addEventListener('click', () => onPageChange(currentPage - 1));
-        container.appendChild(prevBtn);
-      }
-      
-      // Botones de páginas
-      const startPage = Math.max(0, currentPage - 2);
-      const endPage = Math.min(totalPages - 1, currentPage + 2);
-      
-      for(let i = startPage; i <= endPage; i++) {
+
+      for(let i = 0; i < totalPages; i++) {
         const pageBtn = document.createElement('button');
         pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
         pageBtn.textContent = i + 1;
         pageBtn.addEventListener('click', () => onPageChange(i));
         container.appendChild(pageBtn);
       }
-      
-      // Botón siguiente
-      if(currentPage < totalPages - 1) {
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'page-btn';
-        nextBtn.innerHTML = '&gt;';
-        nextBtn.title = 'Página siguiente';
-        nextBtn.addEventListener('click', () => onPageChange(currentPage + 1));
-        container.appendChild(nextBtn);
-      }
-    }
+    } 
 
     function renderQuestion(){
       const q = questions[state.current];
@@ -1449,7 +1423,7 @@
         },
         {
         "id": 27,
-        "type": "multiple",
+        "type": "single",
         "question": "¿Qué proceso permite aumentar la cantidad de abonados atendidos por un sistema celular de comunicaciones en una determinada zona?",
         "image": "27T.png",
         "options": [
@@ -2411,12 +2385,6 @@
             {"id": "f", "text": "Los pines 7 y 8 de la otra", "correct": false}
         ]
         },
-        {
-        "id": 108,
-        "type": "text",
-        "question": "La forma en que se indica el tamaño de un conductor de comunicaciones es utilizando la nomenclatura AWG. Indique cuál es el número con el que se expresa el grosor de un cable UTP utilizado en cableado estructurado que responda a la categoría 6A, 7 y 8",
-        "correctAnswer": ["23"]
-        }
         ]
         };
 
