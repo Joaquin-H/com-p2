@@ -1240,7 +1240,7 @@
             {"id": "d", "text": "Dos Switch entre sí", "correct": false},
             {"id": "e", "text": "Un Switch a un Hub", "correct": false},
             {"id": "f", "text": "Un Access Point a un Router", "correct": true},
-            {"id": "g", "text": "Una Pc a un Router", "correct": true},
+            {"id": "g", "text": "Una Pc a un Router", "correct": false},
             {"id": "h", "text": "Dos PC entre sí", "correct": false},
             {"id": "i", "text": "Dos DTE entre sí", "correct": false}
         ]
@@ -1328,10 +1328,10 @@
         "question": "¿Cuáles son las zonas del espectro electromagnético donde la atenuación de los sistemas de comunicaciones que utiliza fibra óptica, presenta mínimos respecto de otras zonas? (Indicarlas en unidades de nm)",
         "options": [
             {"id": "a", "text": "730", "correct": false},
-            {"id": "b", "text": "1330", "correct": false},
+            {"id": "b", "text": "1330", "correct": true},
             {"id": "c", "text": "900", "correct": false},
             {"id": "d", "text": "1550", "correct": true},
-            {"id": "e", "text": "1300", "correct": true},
+            {"id": "e", "text": "1300", "correct": false},
             {"id": "f", "text": "850", "correct": true}
         ]
         },
@@ -1437,13 +1437,13 @@
         },
         {
         "id": 26,
-        "type": "single",
+        "type": "multiple",
         "question": "¿Cómo se denomina el subsistema que interconecta armarios de telecomunicaciones?",
         "options": [
             {"id": "a", "text": "Area de Acceso", "correct": false},
             {"id": "b", "text": "Subsistema troncal (backbone)", "correct": true},
             {"id": "c", "text": "Armario de telecomunicaciones", "correct": false},
-            {"id": "d", "text": "Facilidad de Entrada", "correct": false},
+            {"id": "d", "text": "Facilidad de Entrada", "correct": true},
             {"id": "e", "text": "Cruzada telefónica", "correct": false}
         ]
         },
@@ -1456,7 +1456,7 @@
             {"id": "a", "text": "Subdivisión de la celdas", "correct": true},
             {"id": "b", "text": "Aumento de la potencia de señal radiada por la antena de la estación base", "correct": false},
             {"id": "c", "text": "Confirmación del haz emitido por la antena", "correct": false},
-            {"id": "d", "text": "Sectorización", "correct": true},
+            {"id": "d", "text": "Sectorización", "correct": false},
             {"id": "e", "text": "Clusterización", "correct": false}
         ]
         },
@@ -1540,8 +1540,8 @@
         "options": [
             {"id": "a", "text": "Cable de pares trenzados laminado blindado individual", "correct": false},
             {"id": "b", "text": "Cable de pares trenzados donde se le añade una malla metálica al apantallamiento global", "correct": false},
-            {"id": "c", "text": "Cable de par trenzado donde el apantallamiento envuelve a todo el grupo de pares trenzados", "correct": true},
-            {"id": "d", "text": "Cable semejante al UTP que añade un recubrimiento metálico por cada par", "correct": false}
+            {"id": "c", "text": "Cable de par trenzado donde el apantallamiento envuelve a todo el grupo de pares trenzados", "correct": false},
+            {"id": "d", "text": "Cable semejante al UTP que añade un recubrimiento metálico por cada par", "correct": true}
         ]
         },
         {
@@ -1570,12 +1570,12 @@
         },
         {
         "id": 37,
-        "type": "single",
+        "type": "multiple",
         "question": "La herramienta de la figura, se usa para:",
         "image": "37T.png",
         "options": [
             {"id": "a", "text": "Empalar dos fibras ópticas monomodo", "correct": false},
-            {"id": "b", "text": "Conectar los cables UTP a un panel de conexión (patch pannel) en el armario", "correct": false},
+            {"id": "b", "text": "Conectar los cables UTP a un panel de conexión (patch pannel) en el armario", "correct": true},
             {"id": "c", "text": "Impactar un jack RJ45 en la toma de pared (roseta)", "correct": true},
             {"id": "d", "text": "Empalar dos fibras ópticas multimodo", "correct": false},
             {"id": "e", "text": "Crimpear un conector RJ45 a un cable UTP", "correct": false}
@@ -1656,14 +1656,14 @@
         },
         {
         "id": 44,
-        "type": "single",
+        "type": "multiple",
         "question": "A que nos referimos como vector poynting?",
         "options": [
             {"id": "a", "text": "Vector que se utiliza para determinar el recorrido de los haces de luz en la fibra optica", "correct": false},
             {"id": "b", "text": "Al producto vectorial entre el campo magnetico y el campo electrico", "correct": true},
             {"id": "c", "text": "Vector que nos indica la trayectoria que recorre una señal", "correct": false},
             {"id": "d", "text": "Al producto entre la frecuencia y la longitud de onda", "correct": false},
-            {"id": "e", "text": "Vector que nos indica la maxima potencia de la señal que estemos propagando", "correct": false}
+            {"id": "e", "text": "Vector que nos indica la maxima potencia de la señal que estemos propagando", "correct": true}
         ]
         },
         {
@@ -1736,10 +1736,10 @@
         },
         {
         "id": 51,
-        "type": "single",
+        "type": "multiple",
         "question": "Los factores intrínsecos que determinan la atenuación en la fibra óptica generan la presencia de:",
         "options": [
-            {"id": "a", "text": "Dispersion cromatica", "correct": false},
+            {"id": "a", "text": "Dispersion cromatica", "correct": true},
             {"id": "b", "text": "Bandas de absorcion cromatica", "correct": false},
             {"id": "c", "text": "Bandas de dispersion cromatica", "correct": false},
             {"id": "d", "text": "Bandas de absorcion", "correct": true},
@@ -1801,10 +1801,9 @@
         "question": "Si necesito implementar un sistema de comunicaciones en el menor tiempo posible, preferiré utilizar como medio conductor",
         "options": [
             {"id": "a", "text": "Par Telefonico", "correct": false},
-            {"id": "b", "text": "Cable UTP", "correct": false},
+            {"id": "b", "text": "Cable UTP", "correct": true},
             {"id": "c", "text": "Fibra Optica", "correct": false},
             {"id": "d", "text": "Cable Coaxil", "correct": false},
-            {"id": "e", "text": "Radiocomunicaciones", "correct": true}
         ]
         },
         {
@@ -1863,7 +1862,7 @@
         "question": "¿Cuáles de los siguientes son estándares de transmisión de bits en serie?",
         "options": [
             {"id": "a", "text": "LPT", "correct": false},
-            {"id": "b", "text": "Cable Modem", "correct": false},
+            {"id": "b", "text": "Cable Modem", "correct": true},
             {"id": "c", "text": "Centronics", "correct": false},
             {"id": "d", "text": "USB", "correct": true},
             {"id": "e", "text": "RS232-C", "correct": true}
@@ -1937,11 +1936,11 @@
             {"id": "b", "text": "Una PC a un switch", "correct": false},
             {"id": "c", "text": "Un Switch a un Router", "correct": false},
             {"id": "d", "text": "Un Access Point a un Router", "correct": false},
-            {"id": "e", "text": "Dos Modems entre si", "correct": false},
-            {"id": "f", "text": "Un Router a una PC", "correct": false},
+            {"id": "e", "text": "Dos Modems entre si", "correct": true},
+            {"id": "f", "text": "Un Router a una PC", "correct": true},
             {"id": "g", "text": "Dos DTE entre si", "correct": true},
-            {"id": "h", "text": "Dos Switch entre si", "correct": false},
-            {"id": "i", "text": "Un Switch a un Hub", "correct": false}
+            {"id": "h", "text": "Dos Switch entre si", "correct": true},
+            {"id": "i", "text": "Un Switch a un Hub", "correct": true}
         ]
         },
         {
@@ -1988,8 +1987,8 @@
         "type": "tf",
         "question": "La tecnología de acceso inalámbrico Bluetooth está orientada sólo a la conexión punto a punto o red de malla de pocos nodos.",
         "options": [
-            {"id": "a", "text": "Falso", "correct": false},
-            {"id": "b", "text": "Verdadero", "correct": true}
+            {"id": "a", "text": "Falso", "correct": true},
+            {"id": "b", "text": "Verdadero", "correct": false}
         ]
         },
         {
@@ -2249,11 +2248,11 @@
         },
         {
         "id": 93,
-        "type": "single",
+        "type": "multiple",
         "question": "Las ventanas de transmisión para una FO dependen de:",
         "options": [
             {"id": "a", "text": "La relación entre los índices de refracción del núcleo y del recubrimiento", "correct": false},
-            {"id": "b", "text": "La frecuencia de la señal a transmitir", "correct": false},
+            {"id": "b", "text": "La frecuencia de la señal a transmitir", "correct": true},
             {"id": "c", "text": "Ninguna respuesta es correcta", "correct": false},
             {"id": "d", "text": "El dopado del núcleo de la FO", "correct": true}
         ]
@@ -2275,8 +2274,8 @@
         "type": "tf",
         "question": "La tecnología Wimax de acceso móvil, bajo el estandar IEEE802.16.e se utiliza en enlaces del tipo LOS.",
         "options": [
-            {"id": "a", "text": "Verdadero", "correct": true},
-            {"id": "b", "text": "Falso", "correct": false}
+            {"id": "a", "text": "Verdadero", "correct": false},
+            {"id": "b", "text": "Falso", "correct": true}
         ]
         },
         {
@@ -2293,10 +2292,10 @@
         },
         {
         "id": 97,
-        "type": "single",
+        "type": "multiple",
         "question": "En una fibra óptica la ley de Snell nos permite:",
         "options": [
-            {"id": "a", "text": "e. Encontrar el número de modos de propagación de una FO", "correct": false},
+            {"id": "a", "text": "e. Encontrar el número de modos de propagación de una FO", "correct": true},
             {"id": "b", "text": "c. Ninguna correcta", "correct": false},
             {"id": "c", "text": "d. Definir las ventanas de transmisión para una FO", "correct": false},
             {"id": "d", "text": "a. Encontrar las razones por la cual la luz es absorbida por el núcleo de la FO", "correct": false},
@@ -2305,12 +2304,14 @@
         },
         {
         "id": 98,
-        "type": "single",
+        "type": "multiple",
         "question": "La dispersión cromática de la FO depende de:",
         "options": [
             {"id": "a", "text": "Ninguna es correcta", "correct": false},
-            {"id": "b", "text": "La falta de homogeneidad en la FO y CEO emisores", "correct": true},
-            {"id": "c", "text": "La longitud de la FO", "correct": false}
+            {"id": "b", "text": "La falta de homogeneidad en la FO y CEO emisores", "correct": false},
+            {"id": "c", "text": "La longitud de la FO", "correct": false},
+            {"id": "d", "text": "La variación de las características isotrópicas del núcleo de la FO", "correct": true},
+            {"id": "e", "text": "La regularidad de las distancias interatómicas en el núcleo de la FO", "correct": true}
         ]
         },
         {
@@ -2326,37 +2327,26 @@
         },
         {
         "id": 100,
-        "type": "single",
-        "question": "Si necesito implementar un sistema de comunicaciones en el menor tiempo posible, preferiré utilizar como medio conductor",
+        "type": "tf",
+        "question": "Se puede considerar al ALOHA ranurado como un tipo de TDM",
         "options": [
-            {"id": "a", "text": "Cable UTP", "correct": false},
-            {"id": "b", "text": "Radiocomunicaciones", "correct": true},
-            {"id": "c", "text": "Coaxil", "correct": false},
-            {"id": "d", "text": "Fibra Optica", "correct": false}
+            {"id": "a", "text": "Falso", "correct": true},
+            {"id": "b", "text": "Verdadero", "correct": false}
         ]
         },
         {
         "id": 101,
-        "type": "tf",
-        "question": "Se puede considerar al ALOHA ranurado como un tipo de TDM",
-        "options": [
-            {"id": "a", "text": "Falso", "correct": false},
-            {"id": "b", "text": "Verdadero", "correct": true}
-        ]
-        },
-        {
-        "id": 102,
         "type": "single",
         "question": "Las ventanas de transmisión para una FO dependen de sus características, definidas por:",
         "options": [
-            {"id": "a", "text": "Ninguna respuesta es correcta", "correct": false},
+            {"id": "a", "text": "Ninguna respuesta es correcta", "correct": true},
             {"id": "b", "text": "El fenomeno de absorción de la luz en el recubrimiento de la FO", "correct": false},
-            {"id": "c", "text": "El dopado del recubrimiento de la FO", "correct": true},
+            {"id": "c", "text": "El dopado del recubrimiento de la FO", "correct": false},
             {"id": "d", "text": "La presencia de impurezas en en el recubrimiento de la FO", "correct": false}
         ]
         },
         {
-        "id": 103,
+        "id": 102,
         "type": "tf",
         "question": "El uso del conector tipo C es obligatorio a partir de la tecnología USB 3,2",
         "options": [
@@ -2365,19 +2355,19 @@
         ]
         },
         {
-        "id": 104,
+        "id": 103,
         "type": "multiple",
         "question": "¿Cuáles de los siguientes métodos de acceso múltiple son empleados por los actuales sistemas de telefonía celular móvil 3G y 4G?",
         "options": [
             {"id": "a", "text": "CDMA", "correct": true},
-            {"id": "b", "text": "FDMA", "correct": false},
+            {"id": "b", "text": "FDMA", "correct": true},
             {"id": "c", "text": "TDMA", "correct": true},
             {"id": "d", "text": "5 G", "correct": false},
             {"id": "e", "text": "DAMA", "correct": false}
         ]
         },
         {
-        "id": 105,
+        "id": 104,
         "type": "multiple",
         "question": "El ruido que puede afectar la propagación de las ondas electromagnética puede ser producido por:",
         "options": [
@@ -2391,7 +2381,7 @@
         ]
         },
         {
-        "id": 106,
+        "id": 105,
         "type": "tf",
         "question": "La relación Señal a Ruido de cuantificación mejora con el aumento de los niveles de cuantificación",
         "options": [
@@ -2400,7 +2390,7 @@
         ]
         },
         {
-        "id": 107,
+        "id": 106,
         "type": "tf",
         "question": "La categoría de mayor ancho de banda utilizada hoy en día en instalaciones de cableado estructurado, es la categoría 1",
         "options": [
@@ -2409,7 +2399,7 @@
         ]
         },
         {
-        "id": 108,
+        "id": 107,
         "type": "single",
         "question": "Si armamos un cable crossover, los pines 1y 2 de una de las puntas se conectaran a:",
         "options": [
@@ -2422,10 +2412,10 @@
         ]
         },
         {
-        "id": 109,
+        "id": 108,
         "type": "text",
         "question": "La forma en que se indica el tamaño de un conductor de comunicaciones es utilizando la nomenclatura AWG. Indique cuál es el número con el que se expresa el grosor de un cable UTP utilizado en cableado estructurado que responda a la categoría 6A, 7 y 8",
-        "correctAnswer": ["23 AWG"]
+        "correctAnswer": ["23"]
         }
         ]
         };
