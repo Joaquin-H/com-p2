@@ -218,7 +218,7 @@
   .quiz-type-selector.center .quiz-type-btn .label,.main-layout.center-mode .quiz-type-btn .label{white-space:normal;max-width:100%}
 
   /* Mobile-specific selector buttons (inside modal) */
-  #btnTeoricoMobile,#btnPracticoMobile,#btnTeoricoMobile span,#btnPracticoMobile span{white-space:normal}
+  #btnTeoricoMobile,#btnPracticoMobile,#btnParcialMobile,#btnTeoricoMobile span,#btnPracticoMobile span,#btnParcialMobile span{white-space:normal}
 }
 
 /* Nuevos estilos para el modal de resumen compacto */
@@ -262,6 +262,10 @@
               <span class="emoji">⚙️</span>
               <span class="label">Práctico</span>
             </button>
+            <button class="quiz-type-btn" id="btnParcial" data-type="parcial">
+              <span class="emoji">📝</span>
+              <span class="label">Parcial</span>
+            </button>
           </div>
           <div class="sidebar-content" id="sidebarContent" style="display:none">
             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -285,6 +289,7 @@
                 <button class="btn btn-sm btn-outline-light" id="showSummaryBtn" title="Ver Resumen">📊</button>
                 <button class="btn btn-sm btn-outline-light" id="btnTeoricoModal" data-type="teorico" title="Teórico">📚</button>
                 <button class="btn btn-sm btn-outline-light" id="btnPracticoModal" data-type="practico" title="Práctico">⚙️</button>
+                <button class="btn btn-sm btn-outline-light" id="btnParcialModal" data-type="parcial" title="Parcial">📝</button>
               </div>
               <div class="sidebar-nav-buttons">
                 <button id="prevBtnSidebar" class="btn btn-outline-light" title="Anterior">←</button>
@@ -378,6 +383,9 @@
           <button class="btn btn-sm btn-outline-light" id="btnPracticoMobile" data-type="practico" style="flex:1">
             <span>⚙️</span> Práctico
           </button>
+          <button class="btn btn-sm btn-outline-light" id="btnParcialMobile" data-type="parcial" style="flex:1">
+            <span>📝</span> Parcial
+          </button>
         </div>
       </div>
       <div class="summary-actions">
@@ -451,7 +459,8 @@
 
       // Cargar datos del quiz correspondiente
       if(type === 'teorico') quizData = quizDataTeorico;
-      else quizData = quizDataPractico;
+      else if(type === 'practico') quizData = quizDataPractico;
+      else quizData = quizDataParcial;
 
       questions = quizData.questions || [];
 
@@ -1068,6 +1077,11 @@
       updateQuizTypeSelection('practico');
       selectQuizType('practico');
     });
+    $('btnParcial').addEventListener('click', function(){
+      if(selectedQuizType === 'parcial') return;
+      updateQuizTypeSelection('parcial');
+      selectQuizType('parcial');
+    });
     $('btnTeoricoModal').addEventListener('click', function(){
       if(selectedQuizType === 'teorico') return;
       updateQuizTypeSelection('teorico');
@@ -1077,6 +1091,11 @@
       if(selectedQuizType === 'practico') return;
       updateQuizTypeSelection('practico');
       selectQuizType('practico');
+    });
+    $('btnParcialModal').addEventListener('click', function(){
+      if(selectedQuizType === 'parcial') return;
+      updateQuizTypeSelection('parcial');
+      selectQuizType('parcial');
     });
     
     // Quiz type selector - Mobile buttons (in summary modal)
@@ -1092,23 +1111,27 @@
       selectQuizType('practico');
       closeSummary();
     });
+    $('btnParcialMobile').addEventListener('click', function(){
+      if(selectedQuizType === 'parcial') return;
+      updateQuizTypeSelection('parcial');
+      selectQuizType('parcial');
+      closeSummary();
+    });
     
     function updateQuizTypeSelection(type){
-      if(type === 'teorico'){
-        $('btnTeorico').classList.add('selected');
-        $('btnPractico').classList.remove('selected');
-        $('btnTeoricoModal').classList.add('selected');
-        $('btnPracticoModal').classList.remove('selected');
-        $('btnTeoricoMobile').classList.add('selected');
-        $('btnPracticoMobile').classList.remove('selected');
-      } else {
-        $('btnPractico').classList.add('selected');
-        $('btnTeorico').classList.remove('selected');
-        $('btnPracticoModal').classList.add('selected');
-        $('btnTeoricoModal').classList.remove('selected');
-        $('btnPracticoMobile').classList.add('selected');
-        $('btnTeoricoMobile').classList.remove('selected');
-      }
+      const mapping = {
+        'teorico': ['btnTeorico','btnTeoricoModal','btnTeoricoMobile'],
+        'practico': ['btnPractico','btnPracticoModal','btnPracticoMobile'],
+        'parcial': ['btnParcial','btnParcialModal','btnParcialMobile']
+      };
+      Object.entries(mapping).forEach(([quizType, ids])=>{
+        ids.forEach(id=>{
+          const btn = $(id);
+          if(btn){
+            btn.classList.toggle('selected', quizType === type);
+          }
+        });
+      });
     }
     // ========== QUIZ DATA ==========
     const quizDataTeorico = {
@@ -2703,6 +2726,34 @@
         }
         ]
         };
+
+    const parcialQuestionIds = [17, 23, 29, 30, 31, 34, 42, 54, 59, 62, 72, 79, 93, 98, 99, 101];
+    const parcialSourceOverrides = { 23: 'practico' };
+
+    const quizDataParcial = {
+      title: 'Quiz Parcial',
+      questions: parcialQuestionIds.map(id => {
+        let source = null;
+        const preferredSource = parcialSourceOverrides[id];
+
+        if(preferredSource === 'practico'){
+          source = quizDataPractico.questions.find(q => q.id === id);
+        } else if(preferredSource === 'teorico'){
+          source = quizDataTeorico.questions.find(q => q.id === id);
+        }
+
+        if(!source){
+          source = quizDataTeorico.questions.find(q => q.id === id) || quizDataPractico.questions.find(q => q.id === id);
+        }
+
+        if(!source){
+          console.warn(`Pregunta con id ${id} no encontrada para el quiz Parcial.`);
+          return null;
+        }
+
+        return JSON.parse(JSON.stringify(source));
+      }).filter(Boolean)
+    };
   </script>
 </body>
 </html>
